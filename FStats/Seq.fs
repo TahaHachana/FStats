@@ -9,3 +9,4 @@ module Seq =
     let minimum       = Statistics.minimum
     let mode          = Statistics.mode        
     let range         = Statistics.range
+    let upperQuartile = Statistics.upperQuartile

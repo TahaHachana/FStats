@@ -40,3 +40,6 @@ let range   = stats.Range
 let range'  = Statistics.range data
 let range'' = Seq.range data
 
+let q3   = stats.UpperQuartile
+let q3'  = Statistics.upperQuartile data
+let q3'' = Seq.upperQuartile data

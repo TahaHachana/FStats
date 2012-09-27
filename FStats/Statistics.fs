@@ -7,7 +7,7 @@ module Statistics =
     /// <summary>Returns the lower quartile in a data set.</summary>
     /// <param name="data">The dat set.</param>
     /// <returns>The lower quartile value.</returns>
-    let lowerQuartile (data: seq<float>) =
+    let inline lowerQuartile (data: seq<float>) =
         let sortedData = Seq.sort data
         let index = getIndex data 1 4.
         let isEven = float (Seq.length data) / 4. |> (fun x -> x % 2. = 0.)
@@ -60,4 +60,14 @@ module Statistics =
         let min = minimum data
         max - min
 
+    /// <summary>Returns the upper quartile in a data set.</summary>
+    /// <param name="data">The dat set.</param>
+    /// <returns>The upper quartile value.</returns>
+    let inline upperQuartile (data: seq<float>) =
+        let data' = Seq.sort data
+        let index = getIndex data 3 4.
+        let isEven = float (Seq.length data * 3) / 4. |> (fun x -> x % 2. = 0.)
+        match isEven with
+            | false -> Seq.nth index data'
+            | true  -> (Seq.nth index data' + Seq.nth (index + 1) data) / 2.            
 

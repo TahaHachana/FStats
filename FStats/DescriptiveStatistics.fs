@@ -11,11 +11,12 @@ module DescriptiveStatistics =
         {
             LowerQuartile = lowerQuartile data
             Maximum       = maximum
-            Mean          = mean    data
-            Median        = median  data
+            Mean          = mean data
+            Median        = median data
             Minimum       = minimum
-            Mode          = mode    data
+            Mode          = mode data
             Range         = maximum - minimum
+            UpperQuartile = upperQuartile data
         }
 
 

@@ -11,6 +11,7 @@ module Types =
             Minimum       : float
             Mode          : float list
             Range         : float
+            UpperQuartile : float
         }
 
 
