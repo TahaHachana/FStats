@@ -7,14 +7,31 @@ module Statistics =
     /// <summary>Returns the lower quartile in a data set.</summary>
     /// <param name="data">The dat set.</param>
     /// <returns>The lower quartile value.</returns>
+    let inline interQuartileRange (data: seq<float>) =
+        
+        let sortedData = Seq.sort data
+        
+        let lowerQuartile =
+            let index = getIndex data 1 4.
+            let isEven = float (Seq.length data) / 4. |> (fun x -> x % 2. = 0.)
+            patternMatch isEven index sortedData
+
+        let upperQuartile =
+            let index = getIndex data 3 4.
+            let isEven = float (Seq.length data * 3) / 4. |> (fun x -> x % 2. = 0.)
+            patternMatch isEven index sortedData
+
+        upperQuartile - lowerQuartile
+
+    /// <summary>Returns the lower quartile in a data set.</summary>
+    /// <param name="data">The dat set.</param>
+    /// <returns>The lower quartile value.</returns>
     let inline lowerQuartile (data: seq<float>) =
         let sortedData = Seq.sort data
         let index = getIndex data 1 4.
         let isEven = float (Seq.length data) / 4. |> (fun x -> x % 2. = 0.)
-        match isEven with
-            | false -> Seq.nth index sortedData
-            | true  -> (Seq.nth index sortedData + Seq.nth (index + 1) sortedData) / 2.            
-    
+        patternMatch isEven index sortedData
+            
     /// <summary>Returns the maximum value in a data set.</summary>
     /// <param name="data">The dat set.</param>
     /// <returns>The maximum value.</returns>
@@ -32,9 +49,7 @@ module Statistics =
         let sortedData = Seq.sort data
         let index = getIndex data 1 2.
         let isEven = Seq.length data % 2 = 0
-        match isEven with
-            | false -> Seq.nth index sortedData
-            | true  -> (Seq.nth index sortedData + Seq.nth (index + 1) sortedData) / 2.            
+        patternMatch isEven index sortedData
 
     /// <summary>Returns the minimum value in a data set.</summary>
     /// <param name="data">The dat set.</param>
@@ -64,10 +79,8 @@ module Statistics =
     /// <param name="data">The dat set.</param>
     /// <returns>The upper quartile value.</returns>
     let inline upperQuartile (data: seq<float>) =
-        let data' = Seq.sort data
+        let sortedData = Seq.sort data
         let index = getIndex data 3 4.
         let isEven = float (Seq.length data * 3) / 4. |> (fun x -> x % 2. = 0.)
-        match isEven with
-            | false -> Seq.nth index data'
-            | true  -> (Seq.nth index data' + Seq.nth (index + 1) data) / 2.            
+        patternMatch isEven index sortedData
 
