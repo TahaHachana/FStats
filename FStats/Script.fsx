@@ -12,6 +12,10 @@ let data =
 
 let stats = DescriptiveStatistics.describe data
 
+let interQuartileRange   = stats.InterQuartileRange
+let interQuartileRange'  = Statistics.interQuartileRange data
+let interQuartileRange'' = Seq.interQuartileRange data
+
 let q1 = stats.LowerQuartile
 let q1' = Statistics.lowerQuartile data
 let q1'' = Seq.lowerQuartile data
@@ -36,6 +40,10 @@ let mode   = stats.Mode
 let mode'  = Statistics.mode data
 let mode'' = Seq.mode data
 
+let popVariance   = stats.PopulationVariance
+let popVariance'  = Statistics.populationVariance data
+let popVariance'' = Seq.populationVariance data
+
 let range   = stats.Range
 let range'  = Statistics.range data
 let range'' = Seq.range data
@@ -43,3 +51,7 @@ let range'' = Seq.range data
 let q3   = stats.UpperQuartile
 let q3'  = Statistics.upperQuartile data
 let q3'' = Seq.upperQuartile data
+
+let variance   = stats.Variance
+let variance'  = Statistics.variance data
+let variance'' = Seq.variance data

@@ -11,8 +11,10 @@ module Types =
             Median             : float
             Minimum            : float
             Mode               : float list
+            PopulationVariance : float
             Range              : float
             UpperQuartile      : float
+            Variance           : float
         }
 
 

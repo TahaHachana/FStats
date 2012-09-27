@@ -67,6 +67,16 @@ module Statistics =
         |> Seq.map fst
         |> Seq.toList
 
+    /// <summary>Calculates the variance of a data set using N degrees of freedom.</summary>
+    /// <param name="data">The dat set.</param>
+    /// <returns>The variance value.</returns>
+    let inline populationVariance (data: seq<float>) =
+        let mean = mean data
+        data
+        |> Seq.map (fun x -> pown x 2)
+        |> Seq.average
+        |> (fun x -> x - (pown mean 2))
+
     /// <summary>Calculates the range of a data set.</summary>
     /// <param name="data">The dat set.</param>
     /// <returns>The range value.</returns>
@@ -84,3 +94,13 @@ module Statistics =
         let isEven = float (Seq.length data * 3) / 4. |> (fun x -> x % 2. = 0.)
         patternMatch isEven index sortedData
 
+    /// <summary>Calculates the variance of a data set using (N - 1) degrees of freedom.</summary>
+    /// <param name="data">The dat set.</param>
+    /// <returns>The variance value.</returns>
+    let inline variance (data: seq<float>) =
+        let mean = mean data
+        data
+        |> Seq.map (fun x -> pown x 2)
+        |> Seq.sum
+        |> (fun x -> x / (Seq.length data - 1 |> float))
+        |> (fun x -> x - (pown mean 2))

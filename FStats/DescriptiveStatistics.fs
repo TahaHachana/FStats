@@ -18,8 +18,10 @@ module DescriptiveStatistics =
             Median             = median data
             Minimum            = minimum
             Mode               = mode data
+            PopulationVariance = populationVariance data
             Range              = maximum - minimum
             UpperQuartile      = upperQuartile
+            Variance           = variance data
         }
 
 
