@@ -39,6 +39,14 @@ module Statistics =
         |> Seq.maxBy fst
         |> snd
         |> Seq.map fst
-        |> Seq.toArray
+        |> Seq.toList
+
+    /// <summary>Calculates the range of a data set.</summary>
+    /// <param name="data">The dat set.</param>
+    /// <returns>The range value.</returns>
+    let inline range (dataset : seq<float>) =
+        let max = maximum dataset
+        let min = minimum dataset
+        max - min
 
 

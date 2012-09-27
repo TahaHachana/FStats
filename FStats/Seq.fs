@@ -7,4 +7,4 @@ module Seq =
     let median  = Statistics.median
     let minimum = Statistics.minimum
     let mode    = Statistics.mode        
-
+    let range   = Statistics.range

@@ -4,6 +4,7 @@ FStats
 About
 -----
 
+F# Statistics Library.
 
 MIT License
 -----------

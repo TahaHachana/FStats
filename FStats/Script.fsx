@@ -10,7 +10,7 @@ let data =
         yield rand.NextDouble() * 10.
     ]
 
-let stats = DescriptiveStatistics.descriptiveStatistics data
+let stats = DescriptiveStatistics.describe data
 
 let maximum   = stats.Maximum
 let maximum'  = Statistics.maximum data
@@ -32,4 +32,7 @@ let mode   = stats.Mode
 let mode'  = Statistics.mode data
 let mode'' = Seq.mode data
 
+let range   = stats.Range
+let range'  = Statistics.range data
+let range'' = Seq.range data
 

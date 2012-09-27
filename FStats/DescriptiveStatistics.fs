@@ -5,13 +5,16 @@ open Statistics
 
 module DescriptiveStatistics =
 
-    let descriptiveStatistics (data: seq<float>) =
+    let describe (data: seq<float>) =
+        let maximum = maximum data
+        let minimum = minimum data
         {
-            Maximum = maximum data
+            Maximum = maximum
             Mean    = mean    data
             Median  = median  data
-            Minimum = minimum data
+            Minimum = minimum
             Mode    = mode    data
+            Range   = maximum - minimum
         }
 
 

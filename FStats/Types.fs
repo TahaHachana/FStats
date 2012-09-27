@@ -9,6 +9,7 @@ module Types =
             Median  : float
             Minimum : float
             Mode    : float list
+            Range   : float
         }
 
 
