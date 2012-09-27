@@ -67,6 +67,17 @@ module Statistics =
         |> Seq.map fst
         |> Seq.toList
 
+    /// <summary>Calculates the standard deviation of a data set using N degrees of freedom.</summary>
+    /// <param name="data">The dat set.</param>
+    /// <returns>The standard deviation value.</returns>
+    let inline populationStandardDeviation data =
+        let mean = mean data
+        data
+        |> Seq.map (fun x -> pown x 2)
+        |> Seq.average
+        |> (fun x -> x - (pown mean 2))
+        |> sqrt
+    
     /// <summary>Calculates the variance of a data set using N degrees of freedom.</summary>
     /// <param name="data">The dat set.</param>
     /// <returns>The variance value.</returns>
@@ -84,6 +95,18 @@ module Statistics =
         let max = maximum data
         let min = minimum data
         max - min
+
+    /// <summary>Calculates the standard deviation of a data set using (N - 1) degrees of freedom.</summary>
+    /// <param name="data">The dat set.</param>
+    /// <returns>The standard deviation value.</returns>
+    let inline standardDeviation data =
+        let mean = mean data
+        data
+        |> Seq.map (fun x -> pown x 2)
+        |> Seq.sum
+        |> (fun x -> x / (Seq.length data - 1 |> float))
+        |> (fun x -> x - (pown mean 2))
+        |> sqrt
 
     /// <summary>Returns the upper quartile in a data set.</summary>
     /// <param name="data">The dat set.</param>

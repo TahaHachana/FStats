@@ -40,6 +40,10 @@ let mode   = stats.Mode
 let mode'  = Statistics.mode data
 let mode'' = Seq.mode data
 
+let popStdDev   = stats.PopulationStandardDeviation
+let popStdDev'  = Statistics.populationStandardDeviation data
+let popStdDev'' = Seq.populationStandardDeviation data
+
 let popVariance   = stats.PopulationVariance
 let popVariance'  = Statistics.populationVariance data
 let popVariance'' = Seq.populationVariance data
@@ -47,6 +51,10 @@ let popVariance'' = Seq.populationVariance data
 let range   = stats.Range
 let range'  = Statistics.range data
 let range'' = Seq.range data
+
+let stdDev   = stats.StandardDeviation
+let stdDev'  = Statistics.standardDeviation data
+let stdDev'' = Seq.standardDeviation data
 
 let q3   = stats.UpperQuartile
 let q3'  = Statistics.upperQuartile data
