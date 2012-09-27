@@ -6,11 +6,15 @@ open FStats
 let rand = Random()
 
 let data =
-    [ for x in 0 .. 1000000 do
+    [ for x in 0 .. 10000 do
         yield rand.NextDouble() * 10.
     ]
 
 let stats = DescriptiveStatistics.describe data
+
+let q1 = stats.LowerQuartile
+let q1' = Statistics.lowerQuartile data
+let q1'' = Seq.lowerQuartile data
 
 let maximum   = stats.Maximum
 let maximum'  = Statistics.maximum data

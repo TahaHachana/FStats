@@ -3,6 +3,17 @@
 open Utilities
 
 module Statistics =
+
+    /// <summary>Returns the lower quartile in a data set.</summary>
+    /// <param name="data">The dat set.</param>
+    /// <returns>The lower quartile value.</returns>
+    let lowerQuartile (data: seq<float>) =
+        let sortedData = Seq.sort data
+        let index = getIndex data 1 4.
+        let isEven = float (Seq.length data) / 4. |> (fun x -> x % 2. = 0.)
+        match isEven with
+            | false -> Seq.nth index sortedData
+            | true  -> (Seq.nth index sortedData + Seq.nth (index + 1) sortedData) / 2.            
     
     /// <summary>Returns the maximum value in a data set.</summary>
     /// <param name="data">The dat set.</param>
@@ -18,22 +29,22 @@ module Statistics =
     /// <param name="data">The dat set.</param>
     /// <returns>The median value.</returns>        
     let inline median (data: seq<float>) =
-        let isEven = Seq.length data % 2 = 0
-        let data' = Seq.sort data
+        let sortedData = Seq.sort data
         let index = getIndex data 1 2.
+        let isEven = Seq.length data % 2 = 0
         match isEven with
-            | false -> Seq.nth index data'
-            | true  -> (Seq.nth index data' + Seq.nth (index + 1) data') / 2.            
+            | false -> Seq.nth index sortedData
+            | true  -> (Seq.nth index sortedData + Seq.nth (index + 1) sortedData) / 2.            
 
     /// <summary>Returns the minimum value in a data set.</summary>
     /// <param name="data">The dat set.</param>
     /// <returns>The minimum value.</returns>
-    let inline minimum (data : seq<float>) = Seq.min data
+    let inline minimum (data: seq<float>) = Seq.min data
 
     /// <summary>Returns the mode of a data set.</summary>
     /// <param name="data">The dat set.</param>
     /// <returns>The mode value(s) list.</returns>
-    let inline mode (data : seq<'T>) =
+    let inline mode (data: seq<'T>) =
         Seq.groupBy id data
         |> Seq.groupBy (fun (_, x) -> Seq.length x)
         |> Seq.maxBy fst
@@ -44,9 +55,9 @@ module Statistics =
     /// <summary>Calculates the range of a data set.</summary>
     /// <param name="data">The dat set.</param>
     /// <returns>The range value.</returns>
-    let inline range (dataset : seq<float>) =
-        let max = maximum dataset
-        let min = minimum dataset
+    let inline range (data : seq<float>) =
+        let max = maximum data
+        let min = minimum data
         max - min
 
 
