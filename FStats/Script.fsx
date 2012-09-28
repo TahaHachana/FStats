@@ -48,6 +48,15 @@ let popVariance   = stats.PopulationVariance
 let popVariance'  = Statistics.populationVariance data
 let popVariance'' = Seq.populationVariance data
 
+let firstQuartile  = Statistics.quartile 1 data
+let firstQuartile' = Seq.quartile 1 data
+
+let secondQuartile  = Statistics.quartile 2 data
+let secondQuartile' = Seq.quartile 2 data
+
+let thirdQuartile  = Statistics.quartile 3 data
+let thirdQuartile' = Seq.quartile 3 data
+
 let range   = stats.Range
 let range'  = Statistics.range data
 let range'' = Seq.range data

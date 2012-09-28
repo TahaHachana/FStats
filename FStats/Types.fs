@@ -1,5 +1,7 @@
 ﻿namespace FStats
 
+open System
+
 module Types =
 
     type DescriptiveStatistics =
@@ -19,4 +21,8 @@ module Types =
             Variance                    : float
         }
 
+    type InvalidQuartileArgument() =
+        
+        inherit Exception()
 
+        override x.Message = "Invalid quartile argument, possible values are 1, 2 or 3."

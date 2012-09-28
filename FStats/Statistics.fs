@@ -1,5 +1,6 @@
 ﻿namespace FStats
 
+open Types
 open Utilities
 
 module Statistics =
@@ -13,12 +14,12 @@ module Statistics =
         
         let lowerQuartile =
             let index = getIndex data 1 4.
-            let isEven = float (Seq.length data) / 4. |> (fun x -> x % 2. = 0.)
+            let isEven = float (Seq.length data) / 4. |> mod2Eq0
             patternMatch isEven index sortedData
 
         let upperQuartile =
             let index = getIndex data 3 4.
-            let isEven = float (Seq.length data * 3) / 4. |> (fun x -> x % 2. = 0.)
+            let isEven = float (Seq.length data * 3) / 4. |> mod2Eq0
             patternMatch isEven index sortedData
 
         upperQuartile - lowerQuartile
@@ -29,7 +30,7 @@ module Statistics =
     let inline lowerQuartile (data: seq<float>) =
         let sortedData = Seq.sort data
         let index = getIndex data 1 4.
-        let isEven = float (Seq.length data) / 4. |> (fun x -> x % 2. = 0.)
+        let isEven = float (Seq.length data) / 4. |> mod2Eq0
         patternMatch isEven index sortedData
             
     /// <summary>Returns the maximum value in a data set.</summary>
@@ -88,6 +89,19 @@ module Statistics =
         |> Seq.average
         |> (fun x -> x - (pown mean 2))
 
+    /// <summary>Returns the specified quartile in a data set.</summary>
+    /// <param name="q">The quartile to return.</param>
+    /// <param name="data">The dat set.</param>
+    /// <returns>The quartile value.</returns>
+    let inline quartile q (data: seq<float>) =
+        match q with
+            | Quartile x ->                    
+                let sortedData = Seq.sort data
+                let index = getIndex data x 4.
+                let isEven = float (Seq.length data) / 4. |> mod2Eq0
+                patternMatch isEven index sortedData
+            | _ -> raise <| new InvalidQuartileArgument()
+
     /// <summary>Calculates the range of a data set.</summary>
     /// <param name="data">The dat set.</param>
     /// <returns>The range value.</returns>
@@ -114,7 +128,7 @@ module Statistics =
     let inline upperQuartile (data: seq<float>) =
         let sortedData = Seq.sort data
         let index = getIndex data 3 4.
-        let isEven = float (Seq.length data * 3) / 4. |> (fun x -> x % 2. = 0.)
+        let isEven = float (Seq.length data * 3) / 4. |> mod2Eq0
         patternMatch isEven index sortedData
 
     /// <summary>Calculates the variance of a data set using (N - 1) degrees of freedom.</summary>
