@@ -3,6 +3,8 @@
 open System
 open FStats
 
+// Statistics
+
 let rand = Random()
 
 let data =
@@ -84,3 +86,18 @@ let variance'' = Seq.variance data
 
 let standardScore  = Statistics.zScore 500. data
 let standardScore' = Seq.zScore 500. data
+
+
+// Correlation
+
+let data' =
+    [ for x in 0 .. 10000 do
+        yield rand.NextDouble() * 10.
+    ]
+
+let covariance = Correlation.covariance data data'
+
+let covariance' = Correlation.populationCovariance data data'
+
+let correlationCoefficient = Correlation.coefficient data data'
+
