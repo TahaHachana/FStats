@@ -40,6 +40,15 @@ let mode   = stats.Mode
 let mode'  = Statistics.mode data
 let mode'' = Seq.mode data
 
+let percentile25  = Statistics.percentile 25 data
+let percentile25' = Seq.percentile 25 data
+
+let percentile50  = Statistics.percentile 50 data
+let percentile50' = Seq.percentile 50 data
+
+let percentile75  = Statistics.percentile 75 data
+let percentile75' = Seq.percentile 75 data
+
 let popStdDev   = stats.PopulationStandardDeviation
 let popStdDev'  = Statistics.populationStandardDeviation data
 let popStdDev'' = Seq.populationStandardDeviation data

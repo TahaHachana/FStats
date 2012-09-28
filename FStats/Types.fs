@@ -21,6 +21,12 @@ module Types =
             Variance                    : float
         }
 
+    type InvalidPercentileArgument() =
+        
+        inherit Exception()
+
+        override x.Message = "Invalid percentile argument, possible values range from 1 to 99."
+
     type InvalidQuartileArgument() =
         
         inherit Exception()

@@ -9,6 +9,7 @@ module Seq =
     let median                      = Statistics.median
     let minimum                     = Statistics.minimum
     let mode                        = Statistics.mode
+    let percentile                  = Statistics.percentile
     let populationStandardDeviation = Statistics.populationStandardDeviation
     let populationVariance          = Statistics.populationVariance
     let quartile                    = Statistics.quartile  

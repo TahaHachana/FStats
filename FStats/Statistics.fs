@@ -68,6 +68,19 @@ module Statistics =
         |> Seq.map fst
         |> Seq.toList
 
+    /// <summary>Returns the specified percentile in a data set.</summary>
+    /// <param name="p">The percentile to return.</param>
+    /// <param name="data">The dat set.</param>
+    /// <returns>The percentile value.</returns>
+    let inline percentile p (data: seq<float>) =
+        match p with
+            | Percentile x ->                    
+                let sortedData = Seq.sort data
+                let index = getIndex data x 100.
+                let isEven = float (Seq.length data) / 100. |> mod2Eq0
+                patternMatch isEven index sortedData
+            | _ -> raise <| InvalidPercentileArgument()
+
     /// <summary>Calculates the standard deviation of a data set using N degrees of freedom.</summary>
     /// <param name="data">The dat set.</param>
     /// <returns>The standard deviation value.</returns>
@@ -100,7 +113,7 @@ module Statistics =
                 let index = getIndex data x 4.
                 let isEven = float (Seq.length data) / 4. |> mod2Eq0
                 patternMatch isEven index sortedData
-            | _ -> raise <| new InvalidQuartileArgument()
+            | _ -> raise <| InvalidQuartileArgument()
 
     /// <summary>Calculates the range of a data set.</summary>
     /// <param name="data">The dat set.</param>

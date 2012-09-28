@@ -15,8 +15,13 @@ module internal Utilities =
             | false -> Seq.nth index data
             | true  -> (Seq.nth index data + Seq.nth (index + 1) data) / 2.        
 
+    let inline (|Percentile|_|) input =
+        match List.exists (fun x -> x = input) [1 .. 99] with
+            | false -> None
+            | true  -> Some input
+
     let inline (|Quartile|_|) input =
-        match List.exists (fun x -> x = input) [1..3] with
+        match List.exists (fun x -> x = input) [1 .. 3] with
             | false -> None
             | true  -> Some input
                 
