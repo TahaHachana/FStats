@@ -17,3 +17,4 @@ module Seq =
     let standardDeviation           = Statistics.standardDeviation
     let upperQuartile               = Statistics.upperQuartile
     let variance                    = Statistics.variance
+    let zScore                      = Statistics.zScore

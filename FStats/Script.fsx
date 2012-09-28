@@ -81,3 +81,6 @@ let q3'' = Seq.upperQuartile data
 let variance   = stats.Variance
 let variance'  = Statistics.variance data
 let variance'' = Seq.variance data
+
+let standardScore  = Statistics.zScore 500. data
+let standardScore' = Seq.zScore 500. data

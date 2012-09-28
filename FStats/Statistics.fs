@@ -154,3 +154,20 @@ module Statistics =
         |> Seq.sum
         |> (fun x -> x / (Seq.length data - 1 |> float))
         |> (fun x -> x - (pown mean 2))
+
+    /// <summary>Calculates the standard score (z-score) of a value in a data set.</summary>
+    /// <param name="x">The value for which to calculate the score.</param>
+    /// <param name="data">The dat set.</param>
+    /// <returns>The z-score value.</returns>
+    let inline zScore x data =
+        let mean = mean data
+        
+        let stdDev =
+            data
+            |> Seq.map (fun x -> pown x 2)
+            |> Seq.sum
+            |> (fun x -> x / (Seq.length data - 1 |> float))
+            |> (fun x -> x - (pown mean 2))
+            |> sqrt
+
+        (x - mean) / stdDev
