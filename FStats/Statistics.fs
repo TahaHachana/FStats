@@ -87,9 +87,8 @@ module Statistics =
     let inline populationStandardDeviation data =
         let mean = mean data
         data
-        |> Seq.map (fun x -> pown x 2)
-        |> Seq.average
-        |> (fun x -> x - (pown mean 2))
+        |> Seq.map (fun x -> x - mean)
+        |> Seq.averageBy (fun x -> pown x 2)
         |> sqrt
     
     /// <summary>Calculates the variance of a data set using N degrees of freedom.</summary>
@@ -98,9 +97,9 @@ module Statistics =
     let inline populationVariance (data: seq<float>) =
         let mean = mean data
         data
-        |> Seq.map (fun x -> pown x 2)
-        |> Seq.average
-        |> (fun x -> x - (pown mean 2))
+        |> Seq.map (fun x -> x - mean)
+        |> Seq.averageBy (fun x -> pown x 2)
+
 
     /// <summary>Returns the specified quartile in a data set.</summary>
     /// <param name="q">The quartile to return.</param>
@@ -129,10 +128,10 @@ module Statistics =
     let inline standardDeviation data =
         let mean = mean data
         data
+        |> Seq.map (fun x -> x - mean)
         |> Seq.map (fun x -> pown x 2)
         |> Seq.sum
         |> (fun x -> x / (Seq.length data - 1 |> float))
-        |> (fun x -> x - (pown mean 2))
         |> sqrt
 
     /// <summary>Returns the upper quartile in a data set.</summary>
@@ -150,10 +149,10 @@ module Statistics =
     let inline variance (data: seq<float>) =
         let mean = mean data
         data
+        |> Seq.map (fun x -> x - mean)
         |> Seq.map (fun x -> pown x 2)
         |> Seq.sum
         |> (fun x -> x / (Seq.length data - 1 |> float))
-        |> (fun x -> x - (pown mean 2))
 
     /// <summary>Calculates the standard score (z-score) of a value in a data set.</summary>
     /// <param name="x">The value for which to calculate the score.</param>
