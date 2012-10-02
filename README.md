@@ -1,10 +1,13 @@
 FStats
-==============
+======
 
 About
 -----
 
 F# Statistics Library.
+* Statistics: quartiles, maximum, mean, median, minimum, mode, percentiles, standard deviation, variance, range, z-score ;
+* Parameters: covariance, standard deviation, variance ;
+* Correlation: covariance, correlation coefficient, prediction.
 
 MIT License
 -----------

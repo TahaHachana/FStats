@@ -14,16 +14,6 @@ module Correlation =
         Seq.zip data data'
         |> Seq.sumBy (fun (x, y) -> ((x - mean) * (y - mean')) / length)
 
-    /// <summary>Calculates the covariance between two data sequences using N degrees of freedom.</summary>
-    /// <param name="data">The first data sequence.</param>
-    /// <param name="data'">The second data sequence.</param>
-    /// <returns>The covariance value.</returns>
-    let inline populationCovariance data data' =
-        let mean = Statistics.mean data
-        let mean' = Statistics.mean data'
-        Seq.zip data data'
-        |> Seq.averageBy (fun (x, y) -> (x - mean) * (y - mean'))
-
     /// <summary>Calculates the correlation coefficient between two data sequences.</summary>
     /// <param name="data">The first data sequence.</param>
     /// <param name="data'">The second data sequence.</param>

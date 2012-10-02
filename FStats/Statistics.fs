@@ -5,10 +5,10 @@ open Utilities
 
 module Statistics =
 
-    /// <summary>Returns the lower quartile in a data sequence.</summary>
-    /// <param name="data">The dat set.</param>
-    /// <returns>The lower quartile value.</returns>
-    let inline interQuartileRange (data: seq<float>) =
+    /// <summary>Returns the inter quartile range of a data sequence.</summary>
+    /// <param name="data">The dat sequence.</param>
+    /// <returns>The inter quartile range value.</returns>
+    let inline interQuartileRange data =
                 
         let sortedData = Seq.sort data
         let isEven = Seq.length data |> mod2Eq0
@@ -24,7 +24,7 @@ module Statistics =
         upperQuartile - lowerQuartile
 
     /// <summary>Returns the lower quartile in a data sequence.</summary>
-    /// <param name="data">The dat set.</param>
+    /// <param name="data">The dat sequence.</param>
     /// <returns>The lower quartile value.</returns>
     let inline lowerQuartile (data: seq<float>) =
         let sortedData = Seq.sort data

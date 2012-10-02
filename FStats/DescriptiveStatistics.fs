@@ -14,17 +14,17 @@ module DescriptiveStatistics =
         let variance = variance data
 
         {
-            InterQuartileRange          = upperQuartile - lowerQuartile
-            LowerQuartile               = lowerQuartile
-            Maximum                     = maximum
-            Mean                        = mean data
-            Median                      = median data
-            Minimum                     = minimum
-            Mode                        = mode data
-            Range                       = maximum - minimum
-            StandardDeviation           = sqrt variance
-            UpperQuartile               = upperQuartile
-            Variance                    = variance
+            InterQuartileRange = upperQuartile - lowerQuartile
+            LowerQuartile      = lowerQuartile
+            Maximum            = maximum
+            Mean               = mean data
+            Median             = median data
+            Minimum            = minimum
+            Mode               = mode data
+            Range              = maximum - minimum
+            StandardDeviation  = sqrt variance
+            UpperQuartile      = upperQuartile
+            Variance           = variance
         }
 
 
