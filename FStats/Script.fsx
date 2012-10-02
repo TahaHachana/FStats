@@ -101,3 +101,4 @@ let covariance' = Correlation.populationCovariance data data'
 
 let correlationCoefficient = Correlation.coefficient data data'
 
+let trend = Correlation.predict data data' 100.

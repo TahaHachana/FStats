@@ -80,26 +80,6 @@ module Statistics =
                 patternMatch isEven index sortedData
             | _ -> raise <| InvalidPercentileArgument()
 
-    /// <summary>Calculates the standard deviation of a data sequence using N degrees of freedom.</summary>
-    /// <param name="data">The dat set.</param>
-    /// <returns>The standard deviation value.</returns>
-    let inline populationStandardDeviation data =
-        let mean = mean data
-        data
-        |> Seq.map (fun x -> x - mean)
-        |> Seq.averageBy (fun x -> pown x 2)
-        |> sqrt
-    
-    /// <summary>Calculates the variance of a data sequence using N degrees of freedom.</summary>
-    /// <param name="data">The dat set.</param>
-    /// <returns>The variance value.</returns>
-    let inline populationVariance (data: seq<float>) =
-        let mean = mean data
-        data
-        |> Seq.map (fun x -> x - mean)
-        |> Seq.averageBy (fun x -> pown x 2)
-
-
     /// <summary>Returns the specified quartile in a data sequence.</summary>
     /// <param name="q">The quartile to return.</param>
     /// <param name="data">The dat set.</param>
@@ -121,18 +101,6 @@ module Statistics =
         let min = minimum data
         max - min
 
-    /// <summary>Calculates the standard deviation of a data sequence using (N - 1) degrees of freedom.</summary>
-    /// <param name="data">The dat set.</param>
-    /// <returns>The standard deviation value.</returns>
-    let inline standardDeviation data =
-        let mean = mean data
-        data
-        |> Seq.map (fun x -> x - mean)
-        |> Seq.map (fun x -> pown x 2)
-        |> Seq.sum
-        |> (fun x -> x / (Seq.length data - 1 |> float))
-        |> sqrt
-
     /// <summary>Returns the upper quartile in a data sequence.</summary>
     /// <param name="data">The dat set.</param>
     /// <returns>The upper quartile value.</returns>
@@ -148,24 +116,19 @@ module Statistics =
     let inline variance (data: seq<float>) =
         let mean = mean data
         data
-        |> Seq.map (fun x -> x - mean)
-        |> Seq.map (fun x -> pown x 2)
-        |> Seq.sum
+        |> Seq.sumBy (fun x -> pown (x - mean) 2)
         |> (fun x -> x / (Seq.length data - 1 |> float))
+
+    /// <summary>Calculates the standard deviation of a data sequence using (N - 1) degrees of freedom.</summary>
+    /// <param name="data">The dat set.</param>
+    /// <returns>The standard deviation value.</returns>
+    let inline standardDeviation data = sqrt <| variance data
 
     /// <summary>Calculates the standard score (z-score) of a value in a data sequence.</summary>
     /// <param name="x">The value for which to calculate the score.</param>
     /// <param name="data">The dat set.</param>
     /// <returns>The z-score value.</returns>
     let inline zScore x data =
-        let mean = mean data
-        
-        let stdDev =
-            data
-            |> Seq.map (fun x -> pown x 2)
-            |> Seq.sum
-            |> (fun x -> x / (Seq.length data - 1 |> float))
-            |> (fun x -> x - (pown mean 2))
-            |> sqrt
-
+        let mean = mean data        
+        let stdDev = standardDeviation data
         (x - mean) / stdDev
