@@ -44,6 +44,7 @@
     <Compile Include="Utilities.fs" />
     <Compile Include="Statistics.fs" />
     <Compile Include="DescriptiveStatistics.fs" />
+    <Compile Include="Parameters.fs" />
     <Compile Include="Seq.fs" />
     <Compile Include="Correlation.fs" />
     <None Include="Script.fsx" />
