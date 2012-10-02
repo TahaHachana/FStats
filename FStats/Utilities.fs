@@ -8,7 +8,7 @@ module internal Utilities =
         |> int
         |> (fun x -> x - 1)
 
-    let inline mod2Eq0 x = x % 2. = 0.
+    let inline mod2Eq0 x = x % 2 = 0
 
     let inline patternMatch isEven index data =
         match isEven with

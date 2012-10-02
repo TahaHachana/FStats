@@ -11,6 +11,6 @@ module AssemblyInfo =
     [<AssemblyFileVersion("1.0.0.0")>]
     [<AssemblyProduct("FStats")>]
     [<AssemblyTitle("FStats")>]
-    [<AssemblyVersion("0.1.14.0")>]
+    [<AssemblyVersion("0.1.16.0")>]
 
     do ()

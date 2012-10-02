@@ -42,6 +42,7 @@ module Correlation =
     /// <summary>Predicts a value in a linear trend (same functionality as Excel's TREND()).</summary>
     /// <param name="data">The first data sequence.</param>
     /// <param name="data'">The second data sequence.</param>
+    /// <param name="x">The possible value in the first sequence for which to predict a value in the second one.</param>
     /// <returns>The predicted value.</returns>
     let inline predict data data' x =
         let mean = Statistics.mean data
