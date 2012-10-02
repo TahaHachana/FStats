@@ -13,8 +13,6 @@ module Types =
             Median                      : float
             Minimum                     : float
             Mode                        : float list
-            PopulationStandardDeviation : float
-            PopulationVariance          : float
             Range                       : float
             StandardDeviation           : float
             UpperQuartile               : float

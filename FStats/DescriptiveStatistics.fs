@@ -10,7 +10,6 @@ module DescriptiveStatistics =
         let lowerQuartile = lowerQuartile data
         let maximum = maximum data
         let minimum = minimum data
-        let populationVariance = populationVariance data
         let upperQuartile = upperQuartile data
         let variance = variance data
 
@@ -22,8 +21,6 @@ module DescriptiveStatistics =
             Median                      = median data
             Minimum                     = minimum
             Mode                        = mode data
-            PopulationStandardDeviation = sqrt populationVariance
-            PopulationVariance          = populationVariance
             Range                       = maximum - minimum
             StandardDeviation           = sqrt variance
             UpperQuartile               = upperQuartile
