@@ -23,14 +23,28 @@ module Statistics =
 
         upperQuartile - lowerQuartile
 
+    /// <summary>Returns the specified quartile in a data sequence.</summary>
+    /// <param name="q">The quartile to return.</param>
+    /// <param name="data">The dat set.</param>
+    /// <returns>The quartile value.</returns>
+    let inline quartile q (data: seq<float>) =
+        match q with
+            | Quartile x ->                    
+                let sortedData = Seq.sort data
+                let index = getIndex data x 4.
+                let isEven = Seq.length data |> mod2Eq0
+                patternMatch isEven index sortedData
+            | _ -> raise <| InvalidQuartileArgument()
+
     /// <summary>Returns the lower quartile in a data sequence.</summary>
     /// <param name="data">The dat sequence.</param>
     /// <returns>The lower quartile value.</returns>
-    let inline lowerQuartile (data: seq<float>) =
-        let sortedData = Seq.sort data
-        let index = getIndex data 1 4.
-        let isEven = Seq.length data |> mod2Eq0
-        patternMatch isEven index sortedData
+    let inline lowerQuartile (data: seq<float>) = quartile 1 data
+
+    /// <summary>Returns the upper quartile in a data sequence.</summary>
+    /// <param name="data">The dat set.</param>
+    /// <returns>The upper quartile value.</returns>
+    let inline upperQuartile (data: seq<float>) = quartile 3 data
             
     /// <summary>Returns the maximum value in a data sequence.</summary>
     /// <param name="data">The dat set.</param>
@@ -45,11 +59,7 @@ module Statistics =
     /// <summary>Calculates the median of a data sequence.</summary>
     /// <param name="data">The dat set.</param>
     /// <returns>The median value.</returns>        
-    let inline median (data: seq<float>) =
-        let sortedData = Seq.sort data
-        let index = getIndex data 1 2.
-        let isEven = Seq.length data % 2 = 0
-        patternMatch isEven index sortedData
+    let inline median (data: seq<float>) = quartile 2 data
 
     /// <summary>Returns the minimum value in a data sequence.</summary>
     /// <param name="data">The dat set.</param>
@@ -80,19 +90,6 @@ module Statistics =
                 patternMatch isEven index sortedData
             | _ -> raise <| InvalidPercentileArgument()
 
-    /// <summary>Returns the specified quartile in a data sequence.</summary>
-    /// <param name="q">The quartile to return.</param>
-    /// <param name="data">The dat set.</param>
-    /// <returns>The quartile value.</returns>
-    let inline quartile q (data: seq<float>) =
-        match q with
-            | Quartile x ->                    
-                let sortedData = Seq.sort data
-                let index = getIndex data x 4.
-                let isEven = Seq.length data |> mod2Eq0
-                patternMatch isEven index sortedData
-            | _ -> raise <| InvalidQuartileArgument()
-
     /// <summary>Calculates the range of a data sequence.</summary>
     /// <param name="data">The dat set.</param>
     /// <returns>The range value.</returns>
@@ -100,15 +97,6 @@ module Statistics =
         let max = maximum data
         let min = minimum data
         max - min
-
-    /// <summary>Returns the upper quartile in a data sequence.</summary>
-    /// <param name="data">The dat set.</param>
-    /// <returns>The upper quartile value.</returns>
-    let inline upperQuartile (data: seq<float>) =
-        let sortedData = Seq.sort data
-        let index = getIndex data 3 4.
-        let isEven = Seq.length data |> mod2Eq0
-        patternMatch isEven index sortedData
 
     /// <summary>Calculates the variance of a data sequence using (N - 1) degrees of freedom.</summary>
     /// <param name="data">The dat set.</param>
