@@ -49,7 +49,7 @@ module Statistics =
     /// <summary>Returns the maximum value in a data sequence.</summary>
     /// <param name="data">The dat sequence.</param>
     /// <returns>The maximum value.</returns>
-    let inline maximum data = Seq.max data
+    let inline maximum (data: seq<float>) = Seq.max data
 
     /// <summary>Calculates the mean of a data sequence.</summary>
     /// <param name="data">The dat sequence.</param>
@@ -64,7 +64,7 @@ module Statistics =
     /// <summary>Returns the minimum value in a data sequence.</summary>
     /// <param name="data">The dat sequence.</param>
     /// <returns>The minimum value.</returns>
-    let inline minimum data = Seq.min data
+    let inline minimum (data: seq<float>) = Seq.min data
 
     /// <summary>Returns the mode of a data sequence.</summary>
     /// <param name="data">The dat sequence.</param>
@@ -114,4 +114,4 @@ module Statistics =
     /// <param name="mean">The mean of the data.</param>
     /// <param name="stdDev">The standard deviation of the data.</param>
     /// <returns>The z-score value.</returns>
-    let inline zScore x mean stdDev = (x - mean) / stdDev
+    let inline zScore (x: float) mean stdDev = (x - mean) / stdDev
