@@ -87,6 +87,8 @@ let variance'' = Seq.variance data
 let standardScore  = Statistics.zScore 500. data
 let standardScore' = Seq.zScore 500. data
 
+let mad = Statistics.mad data
+let mad' = Seq.mad data
 
 // Correlation
 
