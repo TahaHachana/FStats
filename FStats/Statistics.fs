@@ -115,3 +115,12 @@ module Statistics =
     /// <param name="stdDev">The standard deviation of the data.</param>
     /// <returns>The z-score value.</returns>
     let inline zScore (x: float) mean stdDev = (x - mean) / stdDev
+
+    /// <summary>Calculates the MAD (median absolute deviation) of a data sequence.</summary>
+    /// <param name="data">The data sequence.</param>
+    /// <returns>The median absolute deviation (MAD) value.</returns>        
+    let inline mad data = 
+        let data = Seq.cache data
+        let dataMedian = median data
+        let deviation = Seq.map (((-) dataMedian) >> abs) data
+        median deviation
